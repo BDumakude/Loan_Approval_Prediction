@@ -54,19 +54,19 @@ After Oversampling: `1: 411`, `0:411`
     
     ```python
     class CustomScaler(BaseEstimator, TransformerMixin):
-    def __init__(self, columns) -> None:
-        self.scaler = MinMaxScaler()
-        self.columns = columns 
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X[self.columns])
-        return self
+        def __init__(self, columns) -> None:
+            self.scaler = MinMaxScaler()
+            self.columns = columns 
     
-    def transform(self, X):
-        init_col_order = X.columns
-        X_scaled = pd.DataFrame(self.scaler.transform(X[self.columns]), columns=self.columns, index=X.index)
-        X_not_scaled = X.drop(self.columns, axis=1)
-        return pd.concat([X_not_scaled, X_scaled], axis=1)[init_col_order]
+        def fit(self, X, y=None):
+            self.scaler.fit(X[self.columns])
+            return self
+        
+        def transform(self, X):
+            init_col_order = X.columns
+            X_scaled = pd.DataFrame(self.scaler.transform(X[self.columns]), columns=self.columns, index=X.index)
+            X_not_scaled = X.drop(self.columns, axis=1)
+            return pd.concat([X_not_scaled, X_scaled], axis=1)[init_col_order]
     ```
 
     - This is needed if the goal is to pass a scaler throught a scikit-learn pipeline and passing that through a grid search.
