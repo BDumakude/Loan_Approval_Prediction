@@ -24,7 +24,7 @@
 | Credit_History    | [ 1.  0. nan]                 |
 | Property_Area     | ['Urban' 'Rural' 'Semiurban'] |
 | Loan_Status       | ['Y' 'N']                     |
-- The dataset was is imnbalanced with 422 Approvals and 192 Rejections
+- The dataset was is imbalanced with 422 Approvals and 192 Rejections
 ### Converting features to appropriate data types
 - Remove Load_ID
 - Gender: Change NaN to Neither and one-hot encode
